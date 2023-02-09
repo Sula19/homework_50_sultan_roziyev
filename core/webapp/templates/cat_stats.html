@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <sript src="{% static 'bootstjs/bootstrap.min.js' %}"></sript>
+    <title>Cat Stats</title>
+</head>
+<body>
+<style>
+    .container {
+        margin: 0 auto;
+        max-width: 1000px;
+        margin-top: 100px;
+    }
+    body {
+        background: currentColor;
+    }
+    h5 {
+        color: chartreuse;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-2" style="width: 30%">
+            {% if satiety == 20 and happiness == 20 and energy == 20 %}
+                <img src="{% static "img/images.jpeg" %}" style="width: 260px; height: 215px" alt="">
+            {% elif happiness == 0 %}
+                <img src="{% static "img/angry_cat.jpg" %}" style="width: 260px; height: 215px" alt="">
+            {% elif satiety > 20 and happiness > 20 or happiness > 20 %}
+                <img src="{% static "img/happy_cat.jpeg" %}" style="width: 245px" alt="">
+            {% elif energy >= 30 %}
+                <img src="{% static "img/index.jpeg" %}" style="width: 245px" alt="">
+            {% elif satiety == 0 %}
+                <img src="{% static "img/sad_cat.jpeg" %}" style="width: 245px" alt="">
+            {% else %}
+                <img src="{% static "img/beluga.jpeg" %}" style="width: 245px" alt="">
+            {% endif %}
+        </div>
+        <div class="col-8">
+            <h5>Cat - {{ name }}</h5><br>
+            <h5>Age - {{ age }}</h5><br>
+            <h5>Happiness - {{ happiness }}</h5><br>
+            <h5>Satiety - {{ satiety }}</h5><br>
+            <h5>Energy - {{ energy }}</h5><br>
+        </div>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <label style="margin-top: 65px; color: cadetblue">
+            <select class="form-select" aria-label="Default select example" name="action">
+                <option value="play">Play with the cat</option>
+                <option value="eat">Feed the cat</option>
+                <option value="sleep">Put to sleep</option>
+            </select>
+        </label>
+        <input type="submit" value="Send" class="btn btn-success" style="margin-left: 15px">
+    </form>
+</div>
+</body>
+</html>

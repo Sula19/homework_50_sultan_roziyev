@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <sript src="{% static 'bootstjs/bootstrap.min.js' %}"></sript>
+    <link rel="stylesheet" href="">
+    <title>Add Cat</title>
+</head>
+<body>
+<style>
+    h3 {
+        text-align: center;
+        font-size: 25px;
+    }
+    body {
+        background: currentColor;
+    }
+    h3 {
+        color: chartreuse;
+    }
+    .container {
+        margin-top: 15%;
+    }
+    .mb-3 input {
+        width: 300px;
+        margin-left: 465px;
+        margin-top: 50px;
+    }
+</style>
+<div class="container">
+    <form action="/cat_stats/" method="post">
+        {% csrf_token %}
+        <h3>You are welcomed by the cat simulator, first enter the name of the cat</h3>
+        <div class="mb-3">
+            <label for="name"></label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Create name" required>
+        </div>
+        <button type="submit" class="btn btn-success" style="margin-left: 465px; width: 23%">Create</button>
+</form>
+</div>
+</body>
+</html>
